@@ -66,7 +66,7 @@ export default function About() {
                 <div key={i} className="feat-item" style={{ display: 'flex', gap: '1.2rem', marginBottom: '1.5rem', alignItems: 'flex-start' }}>
                   <div className="feat-icon" style={{ 
                     color: 'var(--kuning)', 
-                    background: 'rgba(245, 166, 35, 0.1)', 
+                    background: 'rgba(59, 31, 10, 0.05)', 
                     padding: '12px', 
                     borderRadius: '12px',
                     display: 'flex',
@@ -76,8 +76,8 @@ export default function About() {
                     {feat.icon}
                   </div>
                   <div className="feat-text">
-                    <strong style={{ display: 'block', marginBottom: '0.3rem', fontSize: '1.1rem', color: 'white' }}>{feat.title}</strong>
-                    <span style={{ opacity: 0.7, fontSize: '0.9rem', lineHeight: '1.5' }}>{feat.desc}</span>
+                    <strong style={{ display: 'block', marginBottom: '0.3rem', fontSize: '1.1rem', color: 'var(--coklat)' }}>{feat.title}</strong>
+                    <span style={{ opacity: 0.8, fontSize: '0.9rem', lineHeight: '1.5', color: 'var(--teks)' }}>{feat.desc}</span>
                   </div>
                 </div>
               ))}
