@@ -1,0 +1,16 @@
+{
+  "name": "saung-berkah-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Saung Berkah Waras - Monorepo Website",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/web",
+    "build": "npm run build --workspace=apps/web",
+    "preview": "npm run preview --workspace=apps/web"
+  },
+  "devDependencies": {}
+}
