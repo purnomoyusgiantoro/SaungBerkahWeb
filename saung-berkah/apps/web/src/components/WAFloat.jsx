@@ -14,8 +14,8 @@ export default function WAFloat() {
       aria-label="Chat WhatsApp"
       title="Chat di WhatsApp"
     >
-      <span className="wa-float__icon">💬</span>
-      <span className="wa-float__label">WhatsApp</span>
+      <span className="wa-float__icon"></span>
+      <span className="wa-float__label">WA</span>
     </a>
   )
 }
