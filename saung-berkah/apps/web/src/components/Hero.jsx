@@ -1,89 +1,61 @@
 import { menuData } from '../data/menuData.js'
-import { formatPrice, getCategoryEmoji } from '../utils/helpers.js'
 
 export default function Hero() {
   const featuredItems = menuData.slice(0, 3)
 
-  const scrollToMenu = () => {
-    document.querySelector('#menu')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const scrollToOrder = () => {
-    document.querySelector('#menu')?.scrollIntoView({ behavior: 'smooth' })
+  const scrollToSection = (id) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <section className="hero" id="home">
-      <div className="hero__bg" />
-      <div className="hero__pattern" />
-
-      <div className="hero__content">
-        <div className="hero__text">
-          <div className="hero__badge">
-            <span className="hero__badge-dot" />
-            Saung Asli Sunda · Buka Setiap Hari
-          </div>
-
-          <h1 className="hero__title">
-            Makan Nikmat,
-            <span className="hero__title-accent">Harga Ramah</span>
+      <div className="hero-bg"></div>
+      <div className="hero-pattern"></div>
+      <div className="hero-content">
+        <div>
+          <div className="hero-badge">Saung Asli Sunda · Buka Setiap Hari</div>
+          <h1 className="hero-title">
+            Makan Nikmat,<br />
+            <span className="accent">Harga Ramah</span>
           </h1>
-
-          <p className="hero__subtitle">
+          <p className="hero-subtitle">
             Kuliner lengkap dengan suasana saung yang hangat dan nyaman. Dari soto,
             bakso, aneka nasi, hingga minuman segar — semua ada di sini!
           </p>
-
-          <div className="hero__actions">
-            <button onClick={scrollToOrder} className="btn btn--primary btn--lg">
-              🛒 Pesan Sekarang
-            </button>
-            <button onClick={scrollToMenu} className="btn btn--ghost btn--lg">
-              Lihat Menu
-            </button>
+          <div className="hero-actions">
+            <button onClick={() => scrollToSection('#menu')} className="btn-primary">Pesan Sekarang</button>
+            <button onClick={() => scrollToSection('#menu')} className="btn-secondary">Lihat Menu</button>
           </div>
-
-          <div className="hero__stats">
-            <div className="hero__stat">
-              <span className="hero__stat-num">Rp 5K</span>
-              <span className="hero__stat-label">Harga mulai dari</span>
+          <div className="hero-stats">
+            <div className="stat">
+              <div className="stat-num">Rp 5K</div>
+              <div className="stat-label">Harga mulai dari</div>
             </div>
-            <div className="hero__stat">
-              <span className="hero__stat-num">30+</span>
-              <span className="hero__stat-label">Menu pilihan</span>
+            <div className="stat">
+              <div className="stat-num">30+</div>
+              <div className="stat-label">Menu pilihan</div>
             </div>
-            <div className="hero__stat">
-              <span className="hero__stat-num">3</span>
-              <span className="hero__stat-label">Platform order</span>
+            <div className="stat">
+              <div className="stat-num">3</div>
+              <div className="stat-label">Platform order</div>
             </div>
           </div>
         </div>
 
-        <div className="hero__visual">
+        <div className="hero-visual">
           {featuredItems.map((item, i) => (
-            <div
-              key={item.id}
-              className={`hero__photo-card hero__photo-card--${i + 1}`}
-              style={{
-                background: `linear-gradient(135deg, ${getCardGradient(i)} )`,
-              }}
-            >
-              <div className="hero__photo-emoji">{getCategoryEmoji(item.category)}</div>
-              <div className="hero__photo-label">{item.name}</div>
-              <div className="hero__photo-price">{formatPrice(item.price)}</div>
+            <div key={item.id} className={`photo-card pc${i + 1}`}>
+              <div style={{ padding: '2rem', textAlign: 'center' }}>
+                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>
+                  {item.category === 'makanan' ? '🍲' : item.category === 'camilan' ? '🍟' : '🥤'}
+                </div>
+                <div style={{ color: 'white', fontWeight: 800 }}>{item.name}</div>
+              </div>
+              <div className="photo-label">{item.name}</div>
             </div>
           ))}
         </div>
       </div>
     </section>
   )
-}
-
-function getCardGradient(index) {
-  const gradients = [
-    '#3B1F0A, #5C3015',
-    '#2A1508, #442010',
-    '#1A0E05, #3B1F0A'
-  ]
-  return gradients[index] || gradients[0]
 }

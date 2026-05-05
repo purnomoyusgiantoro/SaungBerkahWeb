@@ -2,25 +2,42 @@ import { restaurantInfo } from '../data/menuData.js'
 
 export default function Location() {
   const infos = [
-    { icon: '📍', label: 'Alamat', value: restaurantInfo.address },
-    { icon: '🕐', label: 'Jam Buka', value: `${restaurantInfo.openDays} · ${restaurantInfo.openHours}` },
-    { icon: '📞', label: 'WhatsApp', value: `+${restaurantInfo.whatsapp}` }
+    { 
+      icon: 'MAP', 
+      label: 'Alamat', 
+      value: 'Cek di Google Maps dengan nama "Saung Berkah Waras" untuk arah lengkap' 
+    },
+    { 
+      icon: 'JAM', 
+      label: 'Jam Operasional', 
+      value: 'Senin – Minggu: 08.00 – 21.00 WIB (Buka Setiap Hari)' 
+    },
+    { 
+      icon: 'WA', 
+      label: 'WhatsApp', 
+      value: 'Hubungi kami untuk reservasi meja atau pesan take away' 
+    },
+    { 
+      icon: 'IG', 
+      label: 'Media Sosial', 
+      value: 'Follow @saungberkahwaras di Instagram & Facebook untuk promo terbaru' 
+    }
   ]
 
   return (
-    <section className="location" id="lokasi">
+    <section className="loc-wrap" id="lokasi">
       <div className="container">
-        <div className="location__inner">
-          <div className="location__info">
-            <span className="section__tag section__tag--light">Lokasi</span>
-            <h2 className="section__title section__title--light">
+        <div className="loc-inner">
+          <div className="loc-info">
+            <span className="sec-tag">Lokasi & Kontak</span>
+            <h2 className="sec-title">
               Temukan <em>Kami</em>
             </h2>
 
-            <div className="location__details">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '2rem' }}>
               {infos.map((info) => (
-                <div key={info.label} className="location__detail">
-                  <div className="location__detail-icon">{info.icon}</div>
+                <div key={info.label} className="loc-item">
+                  <div className="loc-icon" style={{ fontSize: '0.7rem', fontWeight: 900 }}>{info.icon}</div>
                   <div>
                     <strong>{info.label}</strong>
                     <span>{info.value}</span>
@@ -28,22 +45,32 @@ export default function Location() {
                 </div>
               ))}
             </div>
-          </div>
 
-          <div className="location__map">
-            <div className="location__map-placeholder">
-              <span className="location__map-icon">🗺️</span>
-              <p>Saung Berkah Waras</p>
-              <p className="location__map-address">{restaurantInfo.address}</p>
-              <a
-                href={restaurantInfo.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn--primary"
+            <div style={{ marginTop: '2.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <a 
+                href={`https://wa.me/${restaurantInfo.whatsapp}`} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="map-btn"
+                style={{ background: '#25D366', color: '#fff' }}
               >
-                📍 Buka di Google Maps
+                Chat WhatsApp
+              </a>
+              <a 
+                href={restaurantInfo.mapsUrl} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="map-btn"
+              >
+                Buka Google Maps
               </a>
             </div>
+          </div>
+
+          <div className="map-placeholder">
+            <span className="map-icon">🗺️</span>
+            <p style={{ fontWeight: 800, color: 'white', fontSize: '1.2rem', marginBottom: '0.5rem' }}>Saung Berkah Waras</p>
+            <p style={{ opacity: 0.6, fontSize: '0.9rem' }}>Klik tombol di samping untuk rute navigasi</p>
           </div>
         </div>
       </div>

@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import { restaurantInfo } from '../data/menuData.js'
 
-export default function Navbar({ setActivePage }) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -19,26 +18,26 @@ export default function Navbar({ setActivePage }) {
   ]
 
   const handleNavClick = (href) => {
-    setMenuOpen(false)
     const el = document.querySelector(href)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
-      <div className="navbar__logo">
-        <span className="navbar__logo-main">{restaurantInfo.name}</span>
-        <span className="navbar__logo-sub">{restaurantInfo.tagline}</span>
+    <nav style={scrolled ? { height: '60px', background: 'rgba(59,31,10,0.98)' } : {}}>
+      <div className="nav-logo">
+        {restaurantInfo.name}
+        <span>{restaurantInfo.tagline}</span>
       </div>
 
-      <ul className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}>
+      <ul className="nav-links">
         {navLinks.map(link => (
           <li key={link.href}>
             <button
-              className="navbar__link"
               onClick={() => handleNavClick(link.href)}
+              style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+              className="nav-link-btn"
             >
-              {link.label}
+              <a href={link.href} onClick={(e) => e.preventDefault()}>{link.label}</a>
             </button>
           </li>
         ))}
@@ -46,22 +45,12 @@ export default function Navbar({ setActivePage }) {
 
       <a
         href={`https://wa.me/${restaurantInfo.whatsapp}?text=Halo%20Saung%20Berkah%20Waras%2C%20saya%20mau%20pesan`}
-        className="btn btn--primary navbar__cta"
+        className="nav-cta"
         target="_blank"
         rel="noopener noreferrer"
       >
         Pesan Sekarang
       </a>
-
-      <button
-        className={`navbar__hamburger ${menuOpen ? 'navbar__hamburger--open' : ''}`}
-        onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle menu"
-      >
-        <span />
-        <span />
-        <span />
-      </button>
     </nav>
   )
 }
