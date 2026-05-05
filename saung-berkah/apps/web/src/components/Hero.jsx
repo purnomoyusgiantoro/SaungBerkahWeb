@@ -1,7 +1,15 @@
 import { menuData } from '../data/menuData.js'
+import imgBakso from '../assets/images/bakso.png'
+import imgDepantoko from '../assets/images/depantoko.png'
+import imgMenu from '../assets/images/menu.png'
 
 export default function Hero() {
-  const featuredItems = menuData.slice(0, 3)
+  const featuredItems = [
+    { id: 1, name: 'Suasana Saung', img: imgDepantoko },
+    { id: 2, name: 'Menu Pilihan', img: imgMenu },
+    { id: 3, name: 'Bakso Spesial', img: imgBakso },
+
+  ]
 
   const scrollToSection = (id) => {
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -36,7 +44,7 @@ export default function Hero() {
               <div className="stat-label">Menu pilihan</div>
             </div>
             <div className="stat">
-              <div className="stat-num">3</div>
+              <div className="stat-num">4</div>
               <div className="stat-label">Platform order</div>
             </div>
           </div>
@@ -45,12 +53,11 @@ export default function Hero() {
         <div className="hero-visual">
           {featuredItems.map((item, i) => (
             <div key={item.id} className={`photo-card pc${i + 1}`}>
-              <div style={{ padding: '2rem', textAlign: 'center' }}>
-                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>
-                  {item.category === 'makanan' ? '🍲' : item.category === 'camilan' ? '🍟' : '🥤'}
-                </div>
-                <div style={{ color: 'white', fontWeight: 800 }}>{item.name}</div>
-              </div>
+              <img 
+                src={item.img} 
+                alt={item.name} 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
               <div className="photo-label">{item.name}</div>
             </div>
           ))}

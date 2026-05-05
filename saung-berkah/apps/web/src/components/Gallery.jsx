@@ -14,27 +14,37 @@ export default function Gallery({ onGalleryClick }) {
         <div className="gallery-inner">
           <span className="sec-tag">Galeri</span>
           <h2 className="sec-title">
-            Lihat <em>Semuanya</em>
+            Suasana & <em>Hidangan</em>
           </h2>
-          <p className="sec-desc">
-            Klik foto untuk melihat detail menu dan langsung pesan!
-          </p>
 
           <div className="gallery-grid">
-            {galleryItems.map((gItem) => (
-              <div
-                key={gItem.id}
-                className="gal-item"
-                onClick={() => handleClick(gItem)}
-              >
-                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem' }}>
-                  {gItem.label === 'Suasana Saung' ? '🏡' : '🥘'}
+            {galleryItems.map((gItem) => {
+              const menuItem = gItem.menuId
+                ? menuData.find(m => m.id === gItem.menuId)
+                : null
+              
+              const displayImage = gItem.image || (menuItem ? menuItem.image : null)
+
+              return (
+                <div
+                  key={gItem.id}
+                  className={`gal-item ${gItem.menuId ? 'gal-item--clickable' : ''}`}
+                  onClick={() => handleClick(gItem)}
+                >
+                  {displayImage ? (
+                    <img src={displayImage} alt={gItem.label} />
+                  ) : (
+                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem', background: 'var(--krem2)' }}>
+                      {gItem.label.includes('Suasana') ? '🏡' : '🥘'}
+                    </div>
+                  )}
+                  <div className="gal-overlay">
+                    <span className="gal-label">{gItem.label}</span>
+                    {gItem.menuId && <span style={{ display: 'block', fontSize: '0.65rem', color: 'var(--kuning)' }}>Klik untuk pesan</span>}
+                  </div>
                 </div>
-                <div className="gal-overlay">
-                  <span className="gal-label">{gItem.label}</span>
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </div>

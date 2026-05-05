@@ -1,3 +1,6 @@
+import imgGazebo from '../assets/images/tentangkamigaszebo.png'
+import imgMakanan from '../assets/images/tentangkamimakanan.png'
+
 export default function About() {
   const features = [
     {
@@ -23,10 +26,10 @@ export default function About() {
         <div className="about-inner">
           <div className="about-img-stack">
             <div className="aimg aimg1">
-              <div style={{ fontSize: '4rem' }}>🏡</div>
+              <img src={imgGazebo} alt="Suasana Saung Gazebo" />
             </div>
             <div className="aimg aimg2">
-              <div style={{ fontSize: '3rem' }}>🍲</div>
+              <img src={imgMakanan} alt="Masakan Khas Saung" />
             </div>
             <div className="about-ornament">
               Sejak<br />2018

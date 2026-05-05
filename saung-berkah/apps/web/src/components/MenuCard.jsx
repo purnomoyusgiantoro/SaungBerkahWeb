@@ -10,7 +10,11 @@ export default function MenuCard({ item, onClick }) {
   return (
     <article className="menu-card" onClick={onClick}>
       <div className="menu-card-img">
-        <div style={{ fontSize: '3rem' }}>{getEmoji(item.category)}</div>
+        {item.image ? (
+          <img src={item.image} alt={item.name} />
+        ) : (
+          <div style={{ fontSize: '3rem' }}>{getEmoji(item.category)}</div>
+        )}
       </div>
       <div className="menu-card-body">
         <span className="menu-cat">{item.category}</span>
